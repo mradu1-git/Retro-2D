@@ -29,6 +29,11 @@ public class PlayerCar {
 
         position.add(deltaX, deltaY);
     }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
     public Vector2D getPosition() {
         return position;
     }

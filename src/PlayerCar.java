@@ -9,7 +9,6 @@ public class PlayerCar {
     private double friction = 0.05;
     private double angle = Math.toRadians(-90);
     private double rotationSpeed = Math.toRadians(3);
-
     public PlayerCar(Vector2D position) {
         this.position = position;
     }
@@ -29,6 +28,18 @@ public class PlayerCar {
         double deltaY = speed * Math.sin(angle);
 
         position.add(deltaX, deltaY);
+
+        if (position.getX() < 20) {
+            position.setX(20);
+        } else if (position.getX() > 700) {
+            position.setX(780);
+        }
+
+        if (position.getY() < 35) {
+            position.setY(35);
+        } else if (position.getY() > 565) {
+            position.setY(565);
+        }
     }
 
     public void setSpeed(double speed) {

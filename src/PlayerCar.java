@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class PlayerCar {
@@ -41,4 +42,9 @@ public class PlayerCar {
     public double getAngle() {
         return angle;
     }
+
+    public Rectangle getBounds() {
+        return new Rectangle((int)position.getX() - 20, (int) position.getY() - 35, 40, 70);
+    }
+
 }

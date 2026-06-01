@@ -13,7 +13,7 @@ public class PlayerCar {
         this.position = position;
     }
 
-    public void update(KeyboardHandler input) {
+    public boolean update(KeyboardHandler input) {
         if (input.isPressed(KeyEvent.VK_LEFT)) angle -= rotationSpeed;
         if (input.isPressed(KeyEvent.VK_RIGHT)) angle += rotationSpeed;
 
@@ -28,18 +28,15 @@ public class PlayerCar {
         double deltaY = speed * Math.sin(angle);
 
         position.add(deltaX, deltaY);
-
-        if (position.getX() < 20) {
-            position.setX(20);
-        } else if (position.getX() > 700) {
-            position.setX(780);
+        boolean hitWall = false;
+        if (position.getX() < 20 || position.getX() > 700 || position.getY() < 35 || position.getY() > 565) {
+            hitWall = true;
+            this.speed = 0;
+            this.angle = Math.toRadians(-90);
+            this.position.setX(400);
+            this.position.setY(300);
         }
-
-        if (position.getY() < 35) {
-            position.setY(35);
-        } else if (position.getY() > 565) {
-            position.setY(565);
-        }
+        return hitWall;
     }
 
     public void setSpeed(double speed) {

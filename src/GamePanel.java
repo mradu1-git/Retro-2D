@@ -49,7 +49,14 @@ public class GamePanel extends JPanel implements ActionListener {
 
     private void updateGameLogic() {
 
-        player.update(input);
+        boolean wallCrashed = player.update(input);
+        if (wallCrashed) {
+            score -= 500;
+            System.out.println("Boundary Hit! -500 Penalty!");
+            if (score < 0) {
+                score = 0;
+            }
+        }
         score++;
         spawnTimer++;
         if (spawnTimer >= SPAWN_INTERVAL) {
